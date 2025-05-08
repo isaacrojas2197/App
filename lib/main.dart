@@ -1,38 +1,73 @@
 import 'package:flutter/material.dart';
+import 'home_page.dart'; // Asegúrate de tener este archivo en /lib
 
 void main() {
   runApp(const TravelApp());
 }
 
-// Esta es la clase principal de la app (usa OOP: herencia de StatelessWidget)
 class TravelApp extends StatelessWidget {
-  const TravelApp({super.key}); // Constructor
+  const TravelApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // Quita la banda de debug
-      title: 'Travel Time',
-      home: Scaffold(
-        backgroundColor: Colors.black,
-        body: SingleChildScrollView(
+      debugShowCheckedModeBanner: false,
+      title: 'My Travel App',
+      theme: ThemeData.dark(),
+      home: const WelcomeScreen(),
+    );
+  }
+}
+
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 40), // Espacio arriba
-              Text(
+              const Text(
                 'Welcome to My Travel App',
                 style: TextStyle(
-                  color: Colors.white,
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
+                textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 20),
-              Text(
-                'This is your travel planner!',
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 18,
+              const SizedBox(height: 16),
+              const Text(
+                'Plan your adventures with style and ease.',
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 32),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueAccent,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 32,
+                    vertical: 14,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: const Text(
+                  'Get Started',
+                  style: TextStyle(fontSize: 16),
                 ),
               ),
             ],
